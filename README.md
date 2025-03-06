@@ -2,78 +2,78 @@
 
 ## Project Overview
 
-The **Land Type Classification using Sentinel-2 Satellite Images** project leverages **Deep Neural Networks (DNNs)** to classify various land types based on satellite imagery from the European Space Agency’s Sentinel-2 mission. The main land types targeted for classification include:
+This project focuses on classifying different land types (agriculture, water, urban areas, desert, roads, trees) using Sentinel-2 satellite images. By leveraging Deep Neural Networks (DNNs), we aim to develop an accurate and efficient model for land classification, which can be beneficial for environmental monitoring, urban planning, and agricultural management.
 
-- Agriculture
-- Water
-- Urban areas
-- Desert
-- Roads
-- Trees
+## Purpose & Real-World Benefits
 
-Sentinel-2 provides free, high-resolution multispectral images, making it an ideal resource for land use classification. The primary objective of this project is to develop a DNN model that accurately classifies these land types, enabling applications in:
+The primary purpose of this project is to provide an automated and reliable solution for land classification using satellite imagery. This technology can be leveraged by:
 
-- **Urban Planning**
-- **Environmental Monitoring**
-- **Resource Management**
+- **Urban Planners**: To monitor land usage and optimize city expansion.
+- **Environmental Agencies**: To track deforestation, water bodies, and climate change effects.
+- **Agricultural Experts**: To analyze soil health and vegetation coverage for better crop management.
+- **Disaster Response Teams**: To assess land changes after natural disasters such as floods and wildfires.
+- **Government & Policy Makers**: To make data-driven decisions for sustainable land development and resource allocation.
 
-### Key Features
-- Utilization of Sentinel-2 multispectral imagery.
-- Application of state-of-the-art DNN architectures for image classification.
-- Support for open-source datasets and the ability to generate custom datasets using tools like **QGIS**.
+By implementing an AI-driven classification model, we reduce the time and manual effort required for land classification while increasing accuracy and scalability.
 
-### Goals
-- Create a reliable and efficient DNN-based classification model.
-- Provide actionable insights for stakeholders in urban development, environmental conservation, and other domains.
+## Dataset
 
-### Tools and Technologies
-- **Deep Neural Networks (DNNs):** For building and training the classification model.
-- **Sentinel-2 Data:** High-resolution, multispectral satellite images.
-- **QGIS:** For generating and managing custom datasets.
-- **Python:** The primary programming language for data processing and model development.
-- **TensorFlow/PyTorch:** Frameworks for implementing DNNs.
+We utilize Sentinel-2 satellite imagery, a high-resolution dataset provided by the European Space Agency (ESA). These images contain multiple spectral bands that capture detailed information about land surfaces, allowing for precise classification.
 
-### Applications
-1. **Urban Planning:** Identify urban growth patterns and optimize land use.
-2. **Environmental Monitoring:** Track deforestation, waterbody changes, and desertification.
-3. **Resource Management:** Optimize agricultural practices and natural resource utilization.
+### Data Preprocessing
 
----
+1. **Image Acquisition**: Downloading and selecting relevant Sentinel-2 images.
+2. **Preprocessing**:
+   - Resizing images to a standard resolution.
+   - Normalizing pixel values for better model performance.
+   - Extracting relevant spectral bands.
+3. **Labeling**: Assigning land type labels to images based on geographic information and reference datasets.
 
-## Getting Started
+## Methodology
 
-### Prerequisites
-- Python 3.7+
-- QGIS (optional, for dataset generation)
-- TensorFlow or PyTorch
+1. **Exploratory Data Analysis (EDA)**:
+   - Visualizing different land types.
+   - Analyzing spectral characteristics of land classes.
+2. **Feature Engineering**:
+   - Extracting essential spectral bands for classification.
+   - Applying Principal Component Analysis (PCA) if necessary.
+3. **Model Training**:
+   - Using a Deep Neural Network (DNN) to classify images.
+   - Experimenting with CNN architectures for improved accuracy.
+   - Training with labeled datasets and evaluating performance.
+4. **Evaluation Metrics**:
+   - Accuracy
+   - Precision, Recall, and F1-score
+   - Confusion Matrix Analysis
 
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-repository-url
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd land-type-classification
-   ```
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Tools & Technologies
 
----
+- **Python**: Primary programming language.
+- **TensorFlow/Keras**: Deep learning framework for building the classification model.
+- **OpenCV**: Image processing and manipulation.
+- **GDAL**: Handling geospatial data.
+- **Pandas, NumPy**: Data manipulation and analysis.
+- **Matplotlib, Seaborn**: Visualization of data and results.
 
-## Contributing
-Contributions are welcome! Please fork the repository and submit a pull request with your changes.
+## Challenges & Solutions
 
----
+- **Handling Large Datasets**: Used cloud storage and batch processing to manage high-resolution images efficiently.
+- **Class Imbalance**: Applied data augmentation techniques to balance training samples.
+- **Feature Selection**: Experimented with different spectral bands to find the most informative ones.
 
-## License
-This project is licensed under the MIT License.
+## Future Improvements
 
----
+- Integrate more advanced deep learning techniques like Transformer models for enhanced accuracy.
+- Expand dataset to include multi-seasonal images for better generalization.
+- Deploy the model as a web application for easy accessibility.
 
-## Acknowledgments
-- **European Space Agency (ESA):** For providing Sentinel-2 satellite imagery.
-- Open-source contributors and communities for tools and datasets used in this project.
+## Contributors
+
+- **Ahmed Hazem Elabady** - Team Leader, Model Selection, Model Development, Final Report & Presentation.
+- **Ahmed Selim** - Data Collection, Image Quality Validation, Model Training & Optimization.
+- **Mustafa Bayomi** - Exploratory Data Analysis (EDA), Preprocessing, Feature Analysis.
+- **John George** - API Development using Flask/FastAPI, Dashboard Integration Support.
+- **Mohamed Yasser** - Deployment Monitoring, Power BI Dashboard Development.
+
+
 
