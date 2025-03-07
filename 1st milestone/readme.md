@@ -55,18 +55,6 @@ where **NIR = Band 8 (B8)** and **Red = Band 4 (B4)**.
 
 ---
 
-### **🔹 4. Debugging & Fixing Common Errors**  
-During the milestone, several **unexpected errors** occurred:  
-
-| **Error** | **Reason** | **Fix Implemented** |
-|-----------|-----------|-----------------|
-| `TypeError: string indices must be integers` | `X` was still a **file path** instead of a NumPy array | Used `np.load(X.npy)` before processing |
-| `IndexError: index 7 is out of bounds` | Using **4-band data** but referencing **13-band indices** | Adjusted NDVI function to use correct indices (`nir_band=3, red_band=2`) |
-| `LabelEncoder not defined` | Forgot to import `LabelEncoder` | Added `from sklearn.preprocessing import LabelEncoder` |
-| `Unbalanced dataset` | Some categories had fewer images | Applied **controlled augmentation** until 4,000 images per class |
-
----
-
 ## **📊 Final Outcome**
 By the end of this milestone, we successfully:  
 ✔ **Prepared the dataset** (resized, normalized, and structured)  
