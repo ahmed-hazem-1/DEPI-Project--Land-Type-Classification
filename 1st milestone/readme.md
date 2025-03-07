@@ -76,7 +76,7 @@ Now, with the **clean & well-structured dataset**, we are ready for **the next m
 This milestone was successfully completed through the collaborative efforts of the team, where each member played a crucial role in ensuring the dataset was well-prepared, augmented, and visualized effectively.  
 
 ### **🔹 Ahmed Selim**  
-- Downloaded EuroSAT dataset and upload it to Drive
+- Downloaded EuroSAT dataset and uploaded it to Drive
 - Designed and implemented the **core algorithms** for **data preprocessing and NDVI computation**.  
 - Developed the **visualization techniques** to analyze NDVI maps and dataset distribution.  
 - Ensured the **accuracy of spectral band selection** for meaningful vegetation analysis.  
