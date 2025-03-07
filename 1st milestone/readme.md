@@ -79,8 +79,23 @@ Now, with the **clean & well-structured dataset**, we are ready for **the next m
 ---
 
 ## **📌 Next Steps**
-🔹 **Train a CNN model** using this dataset  
-🔹 **Compare results using 4-band vs. 13-band inputs**  
+🔹 **Train model** using this dataset  
 🔹 **Fine-tune augmentation & preprocessing for better accuracy**  
 
-Would you like to **add dataset statistics (image count per category) to this README?** 😊
+
+## **🎯 Contributions**  
+
+This milestone was successfully completed through the collaborative efforts of the team, where each member played a crucial role in ensuring the dataset was well-prepared, augmented, and visualized effectively.  
+
+### **🔹 Ahmed Selim**  
+- Downloaded EuroSAT dataset and upload it to Drive
+- Designed and implemented the **core algorithms** for **data preprocessing and NDVI computation**.  
+- Developed the **visualization techniques** to analyze NDVI maps and dataset distribution.  
+- Ensured the **accuracy of spectral band selection** for meaningful vegetation analysis.  
+
+### **🔹 Ahmed Hazem**  
+- Led the **data augmentation process**, ensuring **each category reached 4,000 images** while maintaining dataset quality.  
+- Optimized **dataset structuring and storage**, making it easier to manage and access.  
+- Suggested and implemented the **use of Google Drive for persistent dataset storage** and **Google Colab for scalable execution**, improving efficiency compared to local processing.  
+
+Both **Ahmed Selim and Ahmed Hazem** worked together to troubleshoot errors, optimize workflows, and ensure the dataset was fully prepared for the next stage: **model training and evaluation**. 🚀  
