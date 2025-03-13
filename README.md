@@ -39,10 +39,10 @@ This project leverages **Deep Neural Networks (DNNs)** to classify different lan
 |--------------|---------------|----------------|-----------------|----------------|  
 | **M1: Data Collection, Exploration & Preprocessing** | Gather, validate, and preprocess satellite images. | Ahmed Selim | 14 | EDA Report, Cleaned Dataset, Visualizations |  
 | **M2: Advanced Data Analysis & Model Selection** | Perform feature analysis, dimensionality reduction (PCA), select best model. | Mustafa Bayomi, Ahmed Hazem | 31 | Data Analysis Report, Model Selection Summary |  
-| **M3: Model Development & Training** | Build, train, and optimize deep learning model. | Ahmed Hazem, Ahmed Selim, Mustafa Bayomi | 30 | Model Code, Training & Evaluation Report, Trained Model |  
-| **M4: Deployment & Monitoring** | Deploy model and set up monitoring. | John George, Mohamed Yasser | 61 | Deployed Model, Monitoring Setup |  
-| **M5: Dashboard Development** | Create an interactive Power BI dashboard. | Mohamed Yasser, John George | 61 | Functional Power BI Dashboard |  
-| **M6: GitHub README & Presentation** | Document project on GitHub and prepare final presentation. | Ahmed Hazem | 83 | GitHub README, Final Presentation |  
+| **M3: Model Development & Training** | Build, train, and optimize deep learning model. | Ahmed Hazem, Ahmed Selim, Mustafa Bayomi | 31 | Model Code, Training & Evaluation Report, Trained Model |  
+| **M4: Deployment & Monitoring** | Deploy model and set up monitoring. | John George, Mohamed Yasser | 23 | Deployed Model, Monitoring Setup |  
+| **M5: Dashboard Development** | Create an interactive Power BI dashboard. | Mohamed Yasser, John George | 68 | Functional Power BI Dashboard |  
+| **M6: GitHub README & Presentation** | Document project on GitHub and prepare final presentation. | Ahmed Hazem | 82 | GitHub README, Final Presentation |  
 
 ### **Resource Allocation**  
 - **Tools & Technologies:** Python, TensorFlow, PyTorch, Pandas, NumPy, Matplotlib, Google Colab, Power BI, Flask/FastAPI, GitHub.  
