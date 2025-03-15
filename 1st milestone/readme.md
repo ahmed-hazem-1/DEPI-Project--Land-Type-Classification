@@ -1,4 +1,4 @@
-# **🚀 README: First Milestone – Data Preparation & Augmentation**  
+# **First Milestone – Data Preparation & Augmentation**  
 
 #### **📌 Overview**  
 The first milestone of our project focused on **preparing, augmenting, and analyzing the EuroSAT dataset** to ensure it's well-structured for machine learning. This involved several key steps:  
