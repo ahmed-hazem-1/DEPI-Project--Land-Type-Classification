@@ -47,11 +47,9 @@ where **NIR = Band 8 (B8)** and **Red = Band 4 (B4)**.
 
 #### **🚧 Challenge:**  
 - **Wrong band indexing** due to using only **4 bands instead of 13** caused indexing errors (`IndexError: index 7 is out of bounds`).  
-- **NDVI visualization errors** because `X` was mistakenly stored as a file path instead of a NumPy array.  
 
 #### **✅ Solution:**  
 - Updated the **NDVI computation function** to correctly reference **B8 (index 3) and B4 (index 2)** when using 4 bands.  
-- Ensured `X.npy` was **properly loaded** before computing NDVI.  
 
 ---
 
