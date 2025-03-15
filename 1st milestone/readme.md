@@ -33,7 +33,7 @@ The dataset originally had **an uneven number of images per category**, which co
 - The augmentation needed to **stop exactly at 4,000 images per category** to avoid imbalance.  
 
 #### **✅ Solution:**  
-- We applied **random transformations** (flipping, rotation, brightness adjustment, Gaussian blur) to increase diversity.  
+- We applied **random transformations** (flipping, rotation, brightness adjustment) to increase diversity.  
 - A loop was implemented to **track the number of images per category** and stop augmenting once 4,000 images were reached.  
 
 ---
