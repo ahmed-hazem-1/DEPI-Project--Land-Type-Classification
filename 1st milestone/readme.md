@@ -22,7 +22,7 @@ At first, we needed to load and preprocess the **Sentinel-2 satellite images** s
 
 #### **✅ Solution:**  
 - We resized all images to **64×64 pixels** for consistency.  
-- We allowed flexibility to choose **either 4 bands (B2, B3, B4, B8) or all 13 bands** based on model needs.  
+- We allowed flexibility to choose **either 4 bands (B2, B3, B4, B8).  
 
 ---
 
