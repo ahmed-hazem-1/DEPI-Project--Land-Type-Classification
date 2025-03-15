@@ -63,6 +63,7 @@ By the end of this milestone, we successfully:
 ✔ **Resolved dataset inconsistencies and fixed multiple errors**  
 
 Now, with the **clean & well-structured dataset**, we are ready for **the next milestone: Model Training!** 🚀  
+You can see the data at here [View](https://drive.google.com/drive/folders/1oZmDZHZLy0ILYLbXWYeT3K11CrbnVV0o?usp=sharing)
 
 ---
 
