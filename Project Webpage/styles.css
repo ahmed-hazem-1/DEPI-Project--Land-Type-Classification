@@ -19,26 +19,18 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 100vh; /* Change from fixed height to min-height */
+    background-attachment: fixed; /* This makes the background fixed */
+    height: 100vh; /* Ensures it covers the full viewport height */
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Changed from flex-end to better center content */
+    justify-content: center;
     align-items: center;
-    padding: 4rem 1rem 3rem; /* Adjusted padding to be more responsive */
+    padding: 4rem 1rem 3rem;
     position: relative;
     overflow-x: hidden;
 }
 
-/* Full-page background for README page */
-.readme-bg {
-    background-image: url('imgs/bg.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    padding: 5rem 1rem 2rem;
-}
 
 /* Animation for page elements */
 @keyframes fadeInUp {
