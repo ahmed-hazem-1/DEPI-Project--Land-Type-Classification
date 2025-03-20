@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Project README</title>
+    <link href="styles.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- GitHub Markdown CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.2.0/github-markdown.min.css">
+    <!-- Custom styles for README page -->
+    <style>
+        /* Additional styles for README content */
+        .readme-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: rgba(31, 41, 55, 0.92);
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+        }
+        
+        .markdown-body {
+            color: #f3f4f6 !important;
+            background-color: transparent !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif !important;
+        }
+        
+        .markdown-body h1,
+        .markdown-body h2,
+        .markdown-body h3,
+        .markdown-body h4,
+        .markdown-body h5,
+        .markdown-body h6 {
+            color: #f9fafb !important;
+            border-bottom-color: #4b5563 !important;
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+        
+        .markdown-body a {
+            color: #60a5fa !important;
+        }
+        
+        .markdown-body a:hover {
+            text-decoration: underline;
+        }
+        
+        .markdown-body hr {
+            background-color: #4b5563 !important;
+        }
+        
+        .markdown-body blockquote {
+            color: #d1d5db !important;
+            border-left-color: #4b5563 !important;
+        }
+        
+        .markdown-body table {
+            display: block;
+            width: 100%;
+            overflow: auto;
+        }
+        
+        .markdown-body table tr {
+            background-color: rgba(31, 41, 55, 0.5) !important;
+            border-color: #4b5563 !important;
+        }
+        
+        .markdown-body table tr:nth-child(2n) {
+            background-color: rgba(55, 65, 81, 0.5) !important;
+        }
+        
+        .markdown-body table th,
+        .markdown-body table td {
+            border-color: #4b5563 !important;
+            padding: 6px 13px;
+        }
+        
+        .markdown-body code,
+        .markdown-body tt {
+            color: #f3f4f6 !important;
+            background-color: rgba(55, 65, 81, 0.5) !important;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+        }
+        
+        .markdown-body pre {
+            background-color: rgba(17, 24, 39, 0.8) !important;
+            border-color: #4b5563 !important;
+            padding: 16px;
+            overflow: auto;
+            border-radius: 6px;
+        }
+        
+        .markdown-body pre code {
+            background-color: transparent !important;
+            padding: 0;
+        }
+        
+        .markdown-body ul,
+        .markdown-body ol {
+            padding-left: 2em;
+        }
+        
+        .loading-indicator {
+            text-align: center;
+            padding: 2rem;
+            color: #8b5cf6;
+            font-weight: 600;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .error-message {
+            text-align: center;
+            padding: 2rem;
+            color: #ef4444;
+            font-weight: 600;
+        }
+        
+        /* Full-page background for README page */
+        .readme-bg {
+            background-image: url('imgs/bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            padding: 5rem 1rem 2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">Land Type Classification</a>
+        <div class="navbar-links">
+            <a href="index.html" class="navbar-link">Classifier</a>
+            <a href="readme.html" class="navbar-link active">Documentation</a>
+        </div>
+        <div class="hamburger-btn" id="hamburgerBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    
+    <div class="side-navbar" id="sideNavbar">
+        <div class="side-navbar-links">
+            <a href="index.html" class="side-navbar-link">Classifier</a>
+            <a href="readme.html" class="side-navbar-link active">Documentation</a>
+        </div>
+    </div>
+    
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <div class="readme-bg">
+        <div class="readme-container">
+            <div id="loading" class="loading-indicator">Loading Documentation content...</div>
+            <div id="error" class="error-message" style="display: none;"></div>
+            <div id="readme-content" class="markdown-body"></div>
+        </div>
+    </div>
+
+    <!-- Add Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <script>
+        // Configure marked options for GitHub flavored markdown
+        marked.setOptions({
+            gfm: true,
+            breaks: true,
+            headerIds: true,
+            mangle: false
+        });
+        
+        // Function to fetch and render README content
+        async function fetchReadme() {
+            const loadingEl = document.getElementById('loading');
+            const errorEl = document.getElementById('error');
+            const contentEl = document.getElementById('readme-content');
+            
+            try {
+                // Path to README.md - adjust as needed
+                const response = await fetch('../README.md');
+                
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch README.md (${response.status} ${response.statusText})`);
+                }
+                
+                const markdown = await response.text();
+                contentEl.innerHTML = marked.parse(markdown);
+                
+                // Hide loading indicator
+                loadingEl.style.display = 'none';
+                
+                // Set up a refresh interval (every 5 minutes)
+                setInterval(refreshReadme, 5 * 60 * 1000);
+            } catch (error) {
+                console.error('Error fetching README:', error);
+                
+                // Hide loading and show error
+                loadingEl.style.display = 'none';
+                errorEl.textContent = `Error: ${error.message}`;
+                errorEl.style.display = 'block';
+            }
+        }
+        
+        // Function to refresh README content without showing loading indicator
+        async function refreshReadme() {
+            const contentEl = document.getElementById('readme-content');
+            const errorEl = document.getElementById('error');
+            
+            try {
+                const response = await fetch('../README.md');
+                
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch README.md (${response.status} ${response.statusText})`);
+                }
+                
+                const markdown = await response.text();
+                contentEl.innerHTML = marked.parse(markdown);
+                
+                // Hide any previous error
+                errorEl.style.display = 'none';
+            } catch (error) {
+                console.error('Error refreshing README:', error);
+            }
+        }
+        
+        // Call the function when page loads
+        document.addEventListener('DOMContentLoaded', fetchReadme);
+        
+        // Side navbar functionality
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sideNavbar = document.getElementById('sideNavbar');
+        const navOverlay = document.getElementById('navOverlay');
+        
+        function toggleSideNavbar() {
+            hamburgerBtn.classList.toggle('open');
+            sideNavbar.classList.toggle('open');
+            navOverlay.classList.toggle('open');
+            // Prevent scrolling when sidebar is open
+            document.body.style.overflow = sideNavbar.classList.contains('open') ? 'hidden' : '';
+        }
+        
+        hamburgerBtn.addEventListener('click', toggleSideNavbar);
+        navOverlay.addEventListener('click', toggleSideNavbar);
+        
+        // Close sidebar when a link is clicked
+        document.querySelectorAll('.side-navbar-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (sideNavbar.classList.contains('open')) {
+                    toggleSideNavbar();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

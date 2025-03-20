@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Land Type Classification</title>
+    <link href="styles.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">Land Type Classification</a>
+        <div class="navbar-links">
+            <a href="index.html" class="navbar-link active">Classifier</a>
+            <a href="readme.html" class="navbar-link">Documentation</a>
+        </div>
+        <!-- Add hamburger menu button -->
+        <div class="hamburger-btn" id="hamburgerBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    
+    <!-- Add side navbar -->
+    <div class="side-navbar" id="sideNavbar">
+        <div class="side-navbar-links">
+            <a href="index.html" class="side-navbar-link active">Classifier</a>
+            <a href="readme.html" class="side-navbar-link">Documentation</a>
+        </div>
+    </div>
+    
+    <!-- Add overlay for closing the side navbar -->
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <div class="full-bg">
+        <!-- Search Box -->
+        <div class="search-container">
+            <input type="text" class="search-input" value="Land Type Classification" readonly>
+            <span class="search-icon" id="searchBtn">🔍</span>
+        </div>
+
+        <!-- Upload Container (Initially Hidden) -->
+        <div class="upload-container" id="uploadContainer">
+            <h2 class="title">Upload Satellite Image</h2>
+            <input type="file" id="imageInput" accept="image/*" class="file-input" />
+            <img id="preview" alt="Image Preview" class="image-preview" />
+            <button id="submitBtn" class="submit-button">
+                Classify Image
+            </button>
+            <div id="loader" class="loader">Analyzing image...</div>
+            <div id="result" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        const searchBtn = document.getElementById('searchBtn');
+        const uploadContainer = document.getElementById('uploadContainer');
+        const imageInput = document.getElementById('imageInput');
+        const preview = document.getElementById('preview');
+        const submitBtn = document.getElementById('submitBtn');
+        const loader = document.getElementById('loader');
+        const result = document.getElementById('result');
+
+        // Add fade-in animation when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.search-container').style.opacity = "0";
+            setTimeout(() => {
+                document.querySelector('.search-container').style.opacity = "1";
+            }, 300);
+        });
+
+        // Show upload container with animation when search icon is clicked
+        searchBtn.addEventListener('click', () => {
+            uploadContainer.style.display = 'block';
+            // Trigger reflow for animation to work
+            void uploadContainer.offsetWidth;
+            uploadContainer.classList.add('visible');
+        });
+
+        const iconMap = {
+            AnnualCrop: "🌱",
+            Forest: "🌲",
+            HerbaceousVegetation: "🍀",
+            Highway: "🛣",
+            Industrial: "🏭",
+            Pasture: "🐑",
+            PermanentCrop: "🌿",
+            Residential: "🏠",
+            River: "🌊",
+            SeaLake: "🏝"
+        };
+
+        // Show image preview with animation
+        imageInput.addEventListener('change', () => {
+            const file = imageInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    preview.src = reader.result;
+                    preview.style.opacity = "0";
+                    preview.style.display = 'block';
+                    
+                    // Fade in the image
+                    setTimeout(() => {
+                        preview.style.opacity = "1";
+                    }, 100);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Handle form submission with loading animation
+        submitBtn.addEventListener('click', async () => {
+            const file = imageInput.files[0];
+            if (!file) {
+                alert("Please select an image first.");
+                return;
+            }
+            
+            // Disable button during processing
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Processing...";
+            submitBtn.style.backgroundColor = "#6b7280";
+            
+            const formData = new FormData();
+            formData.append('file', file);
+
+            loader.style.display = 'block';
+            result.textContent = "";
+            result.classList.remove('result-highlight');
+
+            try {
+                const response = await fetch("http://127.0.0.1:8000/predict/", {
+                    method: "POST",
+                    body: formData
+                });
+                if (!response.ok) {
+                    throw new Error("Response was not OK");
+                }
+                const data = await response.json();
+                result.textContent = iconMap[data.prediction] || "🔍";
+                result.textContent += " " + data.prediction;
+                
+                // Add highlight animation to result
+                result.classList.add('result-highlight');
+            } catch (error) {
+                result.textContent = "Error: " + error.message;
+            } finally {
+                loader.style.display = 'none';
+                
+                // Re-enable button
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Classify Image";
+                submitBtn.style.backgroundColor = "";
+            }
+        });
+
+        // Side navbar functionality
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sideNavbar = document.getElementById('sideNavbar');
+        const navOverlay = document.getElementById('navOverlay');
+        
+        function toggleSideNavbar() {
+            hamburgerBtn.classList.toggle('open');
+            sideNavbar.classList.toggle('open');
+            navOverlay.classList.toggle('open');
+            // Prevent scrolling when sidebar is open
+            document.body.style.overflow = sideNavbar.classList.contains('open') ? 'hidden' : '';
+        }
+        
+        hamburgerBtn.addEventListener('click', toggleSideNavbar);
+        navOverlay.addEventListener('click', toggleSideNavbar);
+        
+        // Close sidebar when a link is clicked
+        document.querySelectorAll('.side-navbar-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (sideNavbar.classList.contains('open')) {
+                    toggleSideNavbar();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
