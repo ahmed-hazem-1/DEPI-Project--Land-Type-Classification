@@ -34,18 +34,6 @@ This repository contains all documentation and resources related to the **DEPI L
    - Graphical representation of various user interactions with the system.
 
 ---
-
-## **🎥 Testing Video**
-If GitHub supports inline video playback, you can watch it here:
-
-```
-![Testing Video](Testing.mp4)
-```
-
-Otherwise, you can download and watch it on your device.
-
----
-
 ## **🚀 How to Use This Repository**
 1. Clone the repository:  
    ```bash
