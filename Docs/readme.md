@@ -33,7 +33,7 @@ This repository contains all documentation and resources related to the **DEPI L
 ## **🚀 How to Use This Repository**
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/DEPI-Project--Land-Type-Classification/Docs/
+   git clone https://github.com/DEPI-Project--Land-Type-Classification
    ```
 2. Navigate to the **Docs** folder.
 3. Open and review each file as needed.
