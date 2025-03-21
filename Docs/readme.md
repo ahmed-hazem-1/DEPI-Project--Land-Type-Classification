@@ -1,7 +1,3 @@
-Here’s your **README.md** file explaining each section in your documentation:
-
----
-
 # **DEPI Project - Land Type Classification 📌**
 
 This repository contains all documentation and resources related to the **DEPI Land Type Classification** project.
@@ -43,6 +39,4 @@ This repository contains all documentation and resources related to the **DEPI L
 3. Open and review each file as needed.
 4. Run the **API Documentation.ipynb** notebook to explore API usage.
 
----
 
-Let me know if you need any modifications! 🚀🔥
