@@ -28,7 +28,8 @@ This repository contains all documentation and resources related to the **DEPI L
 
 ### 8️⃣ **Use Case Diagram.pdf**  
    - Graphical representation of various user interactions with the system.
-
+---
+### You can test the Website By Yourself From This [Link](https://ahmed-hazem-1.github.io/DEPI-Project--Land-Type-Classification)
 ---
 ## **🚀 How to Use This Repository**
 1. Clone the repository:  
