@@ -7,7 +7,6 @@
     <link href="styles.css" rel="stylesheet"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- GitHub Markdown CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.2.0/github-markdown.min.css">
@@ -127,16 +126,19 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-attachment: fixed; /* Make background fixed */
             min-height: 100vh;
+            width: 100%;
             padding: 5rem 1rem 2rem;
+            overflow-x: hidden;
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <a href="../index.html" class="navbar-logo">Land Type Classification</a>
+        <a href="index.html" class="navbar-logo">Land Type Classification</a>
         <div class="navbar-links">
-            <a href="../index.html" class="navbar-link">Classifier</a>
+            <a href="index.html" class="navbar-link">Classifier</a>
             <a href="readme.html" class="navbar-link active">Documentation</a>
         </div>
         <div class="hamburger-btn" id="hamburgerBtn">
@@ -148,7 +150,7 @@
     
     <div class="side-navbar" id="sideNavbar">
         <div class="side-navbar-links">
-            <a href="../index.html" class="side-navbar-link">Classifier</a>
+            <a href="index.html" class="side-navbar-link">Classifier</a>
             <a href="readme.html" class="side-navbar-link active">Documentation</a>
         </div>
     </div>
