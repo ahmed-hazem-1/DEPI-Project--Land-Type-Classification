@@ -27,7 +27,7 @@ This repository contains all documentation and resources related to the **DEPI L
 
 ### 7️⃣ **Testing.mp4**  
    - 📹 A video demonstrating testing procedures and validation of the system. 
-     [![Testing Video](https://via.placeholder.com/600x300?text=Click+to+Watch+Video)]([YOUR_GOOGLE_DRIVE_LINK](https://drive.google.com/file/d/1whS4tYunJyHa5OF5HZTS-W2_Hg6Sizd8/view?usp=sharing))
+   [▶ Watch the Testing Video]([YOUR_GOOGLE_DRIVE_LINK](https://drive.google.com/file/d/1whS4tYunJyHa5OF5HZTS-W2_Hg6Sizd8/view?usp=sharing))
 
 
 ### 8️⃣ **Use Case Diagram.pdf**  
