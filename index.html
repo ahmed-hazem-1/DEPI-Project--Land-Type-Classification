@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Land Type Classification</title>
-    <link href="Project Webpage/styles.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
         <a href="index.html" class="navbar-logo">Land Type Classification</a>
         <div class="navbar-links">
             <a href="index.html" class="navbar-link active">Classifier</a>
-            <a href="Project Webpage/readme.html" class="navbar-link">Documentation</a>
+            <a href="readme.html" class="navbar-link">Documentation</a>
         </div>
         <!-- Add hamburger menu button -->
         <div class="hamburger-btn" id="hamburgerBtn">
@@ -28,7 +28,7 @@
     <div class="side-navbar" id="sideNavbar">
         <div class="side-navbar-links">
             <a href="index.html" class="side-navbar-link active">Classifier</a>
-            <a href="Project Webpage/readme.html" class="side-navbar-link">Documentation</a>
+            <a href="readme.html" class="side-navbar-link">Documentation</a>
         </div>
     </div>
     
@@ -51,6 +51,7 @@
                 Classify Image
             </button>
             <div id="loader" class="loader">Analyzing image...</div>
+            <div id="apiStatus" class="api-status"></div>
             <div id="result" class="result"></div>
         </div>
     </div>
@@ -62,6 +63,7 @@
         const preview = document.getElementById('preview');
         const submitBtn = document.getElementById('submitBtn');
         const loader = document.getElementById('loader');
+        const apiStatus = document.getElementById('apiStatus');
         const result = document.getElementById('result');
 
         // Add fade-in animation when page loads
@@ -129,27 +131,83 @@
             formData.append('file', file);
 
             loader.style.display = 'block';
+            apiStatus.textContent = "Sending image to API...";
+            apiStatus.style.display = 'block';
             result.textContent = "";
             result.classList.remove('result-highlight');
 
             try {
-                const response = await fetch("http://127.0.0.1:8000/predict/", {
+                apiStatus.textContent = "API processing image...";
+                const response = await fetch("https://depi-api-exdpasdqh4g4bwhs.uaenorth-01.azurewebsites.net/predict/", {
                     method: "POST",
-                    body: formData
+                    body: formData,
+                    headers: {
+                        "Accept": "application/json"
+                    }
                 });
+
                 if (!response.ok) {
-                    throw new Error("Response was not OK");
+                    throw new Error("Server returned status: " + response.status);
                 }
+
+                apiStatus.textContent = "Receiving API response...";
                 const data = await response.json();
-                result.textContent = iconMap[data.prediction] || "🔍";
-                result.textContent += " " + data.prediction;
                 
-                // Add highlight animation to result
-                result.classList.add('result-highlight');
+                if (data && data.prediction) {
+                    result.textContent = iconMap[data.prediction] || "🔍";
+                    result.textContent += " " + data.prediction;
+                    console.log(data.prediction);
+                    // Add highlight animation to result
+                    result.classList.add('result-highlight');
+                } else {
+                    // Show information about API development status
+                    console.log("API response:", data);
+                    
+                    // Create development status display
+                    result.innerHTML = `
+                        <div class="placeholder-result">
+                            <div class="placeholder-icon">🧪</div>
+                            <div class="placeholder-message">
+                                <p>API in Development Mode</p>
+                                <span class="placeholder-details">
+                                    The classification model is currently in development. 
+                                    Your image was successfully processed with the following details:
+                                </span>
+                                <div class="api-response-details">
+                                    <div class="api-detail">
+                                        <span class="detail-label">Status:</span>
+                                        <span class="detail-value">Image received by API</span>
+                                    </div>
+                                    ${data.shape ? `
+                                    <div class="api-detail">
+                                        <span class="detail-label">Image Size:</span>
+                                        <span class="detail-value">${data.shape.join(' × ')}</span>
+                                    </div>
+                                    ` : ''}
+                                    ${data.message ? `
+                                    <div class="api-detail">
+                                        <span class="detail-label">Message:</span>
+                                        <span class="detail-value">${data.message}</span>
+                                    </div>
+                                    ` : ''}
+                                </div>
+                                <div class="development-note">
+                                    <strong>Note:</strong> The classification feature will be available soon. 
+                                    The backend successfully processed your image, but the prediction model hasn't 
+                                    been integrated yet.
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
             } catch (error) {
+                apiStatus.textContent = "API communication error";
                 result.textContent = "Error: " + error.message;
             } finally {
                 loader.style.display = 'none';
+                setTimeout(() => {
+                    apiStatus.style.display = 'none';
+                }, 3000);
                 
                 // Re-enable button
                 submitBtn.disabled = false;
